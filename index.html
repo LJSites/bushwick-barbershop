@@ -1,0 +1,384 @@
+<!doctype html>
+<!--
+  ARCHETYPE: Modern grooming studio — dark, precise, editorial. Deliberately
+  a different family from a warm/print mockup: near-black canvas, bone type,
+  one burnt-amber accent, monospace labels for a technical "precise fades" feel.
+  STRUCTURAL DECISIONS:
+  - Slim fixed top bar: stacked wordmark left, location + Call Now right.
+  - Asymmetric hero — text column left, single tall photo right. No overlay.
+  - Services as a numbered (01–06) typeset price list with hairline rows,
+    NOT icon columns and NOT dotted leaders (that was the other mockup).
+  - Full-bleed five-frame photo band between hero and the shop story.
+  - Testimonies as a plain two-column quote grid, monospace attribution,
+    hairline borders — no avatars, no stars, no scores.
+  - Primary CTA "Call Now" (a barbershop runs on calls/bookings), twice.
+  - Animation: none. Hover states only.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bushwick Barbershop — Fades & Grooming in Koreatown, LA</title>
+<meta name="description" content="Modern barbershop in the heart of Koreatown, Los Angeles. Precise fades, beard work, and clean cuts — open eight to nine, seven days a week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15130f; --panel:#1d1a14; --bone:#ece6d9; --muted:#8c8474;
+    --accent:#cc7c3b; --line:#312c22;
+    --sans:'Archivo',Helvetica,Arial,sans-serif;
+    --mono:'Space Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--bone);
+    font-family:var(--sans);font-size:18px;line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .label{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);
+  }
+
+  /* ---- top bar ---- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(21,19,15,.93);border-bottom:1px solid var(--line);
+    backdrop-filter:blur(6px);
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;
+    gap:18px;padding-top:13px;padding-bottom:13px}
+  .wordmark{font-weight:800;font-size:15px;letter-spacing:.04em;
+    line-height:1.05;text-transform:uppercase}
+  .wordmark span{display:block;color:var(--muted);font-weight:500;
+    font-size:11px;letter-spacing:.34em}
+  .nav-right{display:flex;align-items:center;gap:22px}
+  .nav-loc{font-family:var(--mono);font-size:12px;color:var(--muted);
+    letter-spacing:.08em}
+  .call{
+    font-family:var(--mono);font-weight:700;font-size:13px;
+    letter-spacing:.06em;text-decoration:none;color:var(--bg);
+    background:var(--accent);padding:10px 18px;
+  }
+  .call:hover{background:var(--bone)}
+
+  /* ---- hero ---- */
+  .hero{padding-top:130px;padding-bottom:0}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;
+    align-items:end}
+  .hero .label{margin-bottom:24px}
+  h1{
+    font-weight:800;font-size:clamp(2.9rem,7.6vw,5.7rem);line-height:.98;
+    letter-spacing:-.025em;text-transform:uppercase;
+  }
+  h1 em{font-style:normal;color:var(--accent)}
+  .hero p.intro{color:#c4bdad;font-size:1.18rem;max-width:42ch;
+    margin-top:26px}
+  .hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:34px;
+    font-family:var(--mono);font-size:12.5px;color:var(--muted);
+    letter-spacing:.04em}
+  .hero-meta b{display:block;color:var(--bone);font-weight:700;
+    font-size:14px;margin-top:3px;font-family:var(--sans);letter-spacing:0}
+  .hero-cta{margin-top:36px}
+  .btn{
+    display:inline-block;background:var(--accent);color:var(--bg);
+    font-family:var(--mono);font-weight:700;font-size:14px;
+    letter-spacing:.07em;text-transform:uppercase;text-decoration:none;
+    padding:18px 36px;
+  }
+  .btn:hover{background:var(--bone)}
+  .hero-photo{width:100%;height:560px;object-fit:cover;
+    border-top:3px solid var(--accent)}
+
+  /* ---- photo band ---- */
+  .band{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;
+    margin-top:3px}
+  .band img{width:100%;height:200px;object-fit:cover;filter:grayscale(.18)}
+  .band img:hover{filter:none}
+
+  /* ---- sections ---- */
+  section{padding:96px 0}
+  h2{font-weight:800;font-size:clamp(1.9rem,4.4vw,3rem);
+    letter-spacing:-.02em;text-transform:uppercase;line-height:1.03}
+
+  /* ---- the shop ---- */
+  .shop .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;
+    align-items:start}
+  .shop .label{margin-bottom:18px}
+  .shop p{margin-top:20px;font-size:1.16rem;color:#cfc8b8}
+  .shop p:first-of-type{margin-top:26px;font-size:1.3rem;color:var(--bone)}
+
+  /* ---- services ---- */
+  .services{background:var(--panel);border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line)}
+  .services-head{display:flex;justify-content:space-between;
+    align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:14px}
+  .services-head .note{font-family:var(--mono);font-size:12px;
+    color:var(--muted);max-width:30ch;text-align:right}
+  .svc{
+    display:grid;grid-template-columns:auto 1fr auto;gap:24px;
+    align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line);
+  }
+  .svc:first-of-type{border-top:1px solid var(--line)}
+  .svc .num{font-family:var(--mono);font-size:13px;color:var(--accent)}
+  .svc .name{font-weight:600;font-size:1.4rem}
+  .svc .name small{display:block;font-weight:400;font-size:.92rem;
+    color:var(--muted);margin-top:2px}
+  .svc .price{font-family:var(--mono);font-weight:700;font-size:1.15rem}
+  .svc:hover .name{color:var(--accent)}
+
+  /* ---- testimonies ---- */
+  .voices .label{margin-bottom:18px}
+  .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);margin-top:40px}
+  .quote-grid blockquote{background:var(--bg);padding:40px 36px}
+  .quote-grid p{font-size:1.22rem;line-height:1.5;color:var(--bone)}
+  .quote-grid p::before{content:"\201C";color:var(--accent);
+    font-weight:800;margin-right:2px}
+  .quote-grid p::after{content:"\201D";color:var(--accent);font-weight:800}
+  .quote-grid .who{font-family:var(--mono);font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+    margin-top:22px}
+
+  /* ---- visit ---- */
+  .visit{background:var(--panel);border-top:1px solid var(--line)}
+  .visit .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;
+    align-items:start}
+  .visit .label{margin-bottom:18px}
+  .hours{margin-top:26px}
+  .hours .row{display:flex;justify-content:space-between;
+    padding:12px 0;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:14px}
+  .hours .row span:first-child{color:var(--muted);letter-spacing:.04em}
+  .contact{margin-top:30px;line-height:1.7}
+  .contact a{color:var(--accent);text-decoration:none}
+  .contact a:hover{text-decoration:underline}
+  .map{width:100%;height:480px;border:1px solid var(--line);
+    filter:grayscale(.3) contrast(1.05)}
+
+  /* ---- footer ---- */
+  footer{padding:90px 0 44px}
+  .foot-cta{text-align:center;padding-bottom:64px;
+    border-bottom:1px solid var(--line)}
+  .foot-cta h2{margin:16px 0 30px}
+  .foot-grid{display:flex;justify-content:space-between;gap:36px;
+    flex-wrap:wrap;padding-top:46px;font-size:.98rem}
+  .foot-grid .label{margin-bottom:10px}
+  .foot-grid a{color:var(--bone);text-decoration:none}
+  .foot-grid a:hover{color:var(--accent)}
+  .credit{margin-top:52px;font-family:var(--mono);font-size:12px;
+    color:var(--muted);line-height:1.7}
+  .credit a{color:var(--accent)}
+
+  @media(max-width:900px){
+    .hero .grid,.shop .grid,.visit .grid{grid-template-columns:1fr;gap:36px}
+    .hero{padding-top:108px}
+    .hero-photo{height:380px}
+    .band{grid-template-columns:repeat(3,1fr)}
+    .band img{height:150px}
+    .quote-grid{grid-template-columns:1fr}
+    section{padding:68px 0}
+    .services-head .note{text-align:left}
+  }
+  @media(max-width:560px){
+    .nav-loc{display:none}
+    .band{grid-template-columns:repeat(2,1fr)}
+    .svc{grid-template-columns:auto 1fr;row-gap:6px}
+    .svc .price{grid-column:2;justify-self:start}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="wordmark">Bushwick<span>Barbershop</span></div>
+    <div class="nav-right">
+      <span class="nav-loc">Koreatown, LA</span>
+      <a class="call" href="tel:+12139086468">Call Now</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <p class="label">Koreatown &middot; Los Angeles &middot; Open 7 days</p>
+          <h1>Sharp fades.<br>Every <em>chair.</em></h1>
+          <p class="intro">A modern barbershop in the heart of K-Town —
+            precise cuts, clean beard work, and a room that brings the whole
+            block to life.</p>
+          <div class="hero-meta">
+            <div>Hours<b>8:00am &ndash; 9:00pm</b></div>
+            <div>Walk-ins<b>Welcome daily</b></div>
+            <div>Find us<b>3974 W 6th St</b></div>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="tel:+12139086468">Call &amp; Book &mdash; (213) 908-6468</a>
+          </div>
+        </div>
+        <img class="hero-photo"
+          src="https://lh3.googleusercontent.com/places/ANXAkqFBBPez9ISnc4XvbwaT1AwWwNcXVpOQvY38DGqyCSpUpohbp9DtvWz3ikFg0hH1n9nkndgd9KxVCtayeUHdDmVp0we2G1qe7yI=s4800-w1600"
+          alt="Inside Bushwick Barbershop">
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <img src="https://lh3.googleusercontent.com/places/ANXAkqFLTmeON5t_5itEsOA3xxYh6F4i_b6SBXg_k8Pw4p6es_iCGpupalU0zPeJHKO1it1sIG1bW-JQxQDprVpHx3MMuTiBLJS3NQE=s4800-w1600" alt="Barber at work">
+    <img src="https://lh3.googleusercontent.com/places/ANXAkqH2aL1M4wB82VJ5cTi0yLuagzp9Ul4sWwh4NRCrw3L9VN7aHvny-0qDpU7eNjFPNbC37xzda2sdtZ72OoJpjEeMm6htJABNjG0=s4800-w1600" alt="Fresh cut">
+    <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMFDO54N0ZhOfklFSDGOgRK7lnDBX2i5_l0jLYGRYrODRvIyNxGMBVnkXsnS0NZs5z4AmFeRfoGmqRQvsLd9sCsRb8L8QadSfbokctQvYdgi0Xxdx_IpTcUqLvb58JhdLTmL4lWC3C3vQ4bzw=s4800-w1600" alt="Barbershop interior">
+    <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOsUvkq3atnsehvAYgwN0LN8DPVMIJmgCHznz5Sp4DYpF4m87-DoBsN3i4HGl3_yaaBmCN7khQVUzij3EpEfTBcWbS3-kPU7gbEijjUOt64Efxpyl2pEjkzY7erRzmQIkZiRXg-GjZRyJuvEQ=s4800-w1600" alt="Styling detail">
+    <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMjQAOdEsy4wDD4fMVCA8M8Rtnwp2GO4X_81gMxeeaw7_N75KW9Os6H4ROJUVQw2g07JSOENy0tFiXRQ3P4bSpBAJ1EwxYhzbUeakgB75uuWZzbBLl6DtqlGVd-iC_DAf_P5h2MnqDTsXCrTQ=s4800-w1600" alt="The chair">
+  </div>
+
+  <section class="shop">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <p class="label">The Shop</p>
+          <h2>Clean, modern, and built on the cut.</h2>
+        </div>
+        <div>
+          <p>Bushwick Barbershop sits on West 6th Street in the middle of
+            Koreatown — a clean, modern room with a steady, lively energy and
+            a bench of barbers who take the work seriously.</p>
+          <p>Owner Juan and the team deliver precise, real-quality fades day
+            in and day out: skin fades, tapers, beard sculpting, and classic
+            cuts. Regulars come back because the details are right and the
+            time is respected. First-timers tend to become regulars.</p>
+          <p>Open eight to nine, seven days a week. Walk in, or call ahead
+            and ask for your barber.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="wrap">
+      <div class="services-head">
+        <div>
+          <p class="label">Services</p>
+          <h2>What&rsquo;s on the menu.</h2>
+        </div>
+        <p class="note">Sample pricing for this mockup — we&rsquo;ll set it to
+          your real rates.</p>
+      </div>
+      <div class="svc"><span class="num">01</span>
+        <span class="name">Signature Haircut<small>Consultation, cut, and finish</small></span>
+        <span class="price">$40</span></div>
+      <div class="svc"><span class="num">02</span>
+        <span class="name">Skin Fade / Taper<small>Tight, precise blend</small></span>
+        <span class="price">$45</span></div>
+      <div class="svc"><span class="num">03</span>
+        <span class="name">Cut &amp; Beard Combo<small>Full cut with beard sculpt</small></span>
+        <span class="price">$60</span></div>
+      <div class="svc"><span class="num">04</span>
+        <span class="name">Beard Trim &amp; Line-Up<small>Shape, edge, and detail</small></span>
+        <span class="price">$25</span></div>
+      <div class="svc"><span class="num">05</span>
+        <span class="name">Hot Towel Shave<small>Straight razor, hot towel finish</small></span>
+        <span class="price">$35</span></div>
+      <div class="svc"><span class="num">06</span>
+        <span class="name">Kids Cut<small>12 and under</small></span>
+        <span class="price">$30</span></div>
+    </div>
+  </section>
+
+  <section class="voices">
+    <div class="wrap">
+      <p class="label">In Their Words</p>
+      <h2>From the chair.</h2>
+      <div class="quote-grid">
+        <blockquote>
+          <p>Hands down some of the most talented barbers in all of L.A. Any
+            hair type, any cut — they&rsquo;ll hook you up. You won&rsquo;t be
+            disappointed.</p>
+          <div class="who">&mdash; Pierre</div>
+        </blockquote>
+        <blockquote>
+          <p>A clean, modern barbershop in the heart of K-Town. Precise, real
+            quality fades every time. The vibe brings the whole block to
+            life.</p>
+          <div class="who">&mdash; Minkyu P.</div>
+        </blockquote>
+        <blockquote>
+          <p>The barbers here know what they&rsquo;re doing — style, service,
+            time management. No complaints since the first cut, and I keep
+            coming back.</p>
+          <div class="who">&mdash; Joe L.</div>
+        </blockquote>
+        <blockquote>
+          <p>I really care about my hair. Every barber here was professional —
+            this guy really knows his job. I definitely recommend.</p>
+          <div class="who">&mdash; Bulent K.</div>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <p class="label">Hours &amp; Location</p>
+          <h2>Find the shop.</h2>
+          <div class="hours">
+            <div class="row"><span>Mon &ndash; Sat</span><span>8:00am &ndash; 9:00pm</span></div>
+            <div class="row"><span>Sunday</span><span>8:00am &ndash; 8:00pm</span></div>
+          </div>
+          <div class="contact">
+            3974 W 6th St, Los Angeles, CA 90020<br>
+            Phone: <a href="tel:+12139086468">(213) 908-6468</a><br>
+            <a href="https://maps.google.com/?cid=16002237825950477381"
+               target="_blank" rel="noopener">View on Google &rarr;</a>
+          </div>
+        </div>
+        <iframe class="map" loading="lazy" title="Map to Bushwick Barbershop"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=3974+W+6th+St,+Los+Angeles,+CA+90020&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="label">Ready when you are</p>
+      <h2>Book your chair.</h2>
+      <a class="btn" href="tel:+12139086468">Call Now &mdash; (213) 908-6468</a>
+    </div>
+    <div class="foot-grid">
+      <div>
+        <p class="label">Visit</p>
+        3974 W 6th St<br>Los Angeles, CA 90020
+      </div>
+      <div>
+        <p class="label">Hours</p>
+        Mon&ndash;Sat 8am&ndash;9pm<br>Sun 8am&ndash;8pm
+      </div>
+      <div>
+        <p class="label">Call</p>
+        <a href="tel:+12139086468">(213) 908-6468</a>
+      </div>
+      <div>
+        <p class="label">Find us on</p>
+        <a href="https://maps.google.com/?cid=16002237825950477381"
+           target="_blank" rel="noopener">Google Business</a>
+      </div>
+    </div>
+    <p class="credit">Mockup designed by LJ Sites — interested in making this
+      yours? <a href="mailto:jcpeng2002@gmail.com">jcpeng2002@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
